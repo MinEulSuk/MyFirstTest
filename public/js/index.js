@@ -1,9 +1,23 @@
-const test = 10;
-const test1 = 11;
-const test2 = 12;
-const test3 = 13;
+const headerUserNameElement = document.querySelector('.user');
+const userNameElement = document.querySelector('.user-name');
 
-console.log(test);
-console.log(test1);
-console.log(test2);
-console.log(test3);
+const localUserName = localStorage.getItem('userName');
+
+const setUserNameInnerHtml = (name) => {
+  headerUserNameElement.innerHTML = `${name} <span class = "red">님</span>`;
+  userNameElement.innerHTML = `${name} <span>님</span>`;
+};
+
+
+if (localUserName) {
+  setUserNameInnerHtml(localUserName);
+}
+
+userNameElement.onclick = () => {
+  const userName = prompt('이름을 입력해 주세요.');
+  localStorage.setItem('userName', userName);
+
+  headerUserNameElement.innerHTML = `${userName} <span>님</span>`
+  userNameElement.innerHTML = `${userName} <span>님</span>`;
+};
+
